@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Dominik Lenhardt
+  description: Ansible role to manage netplan interfaces
+  license: license (Apache)
+  min_ansible_version: 2.5
+  platforms:
+  - name: Debian
+    versions:
+    - stretch
+  - name: ubuntu
+    versions:
+    - 18.04
+    - 20.04
+    - 20.10
+    - bionic
+  categories:
+  - system
+  - networking
+dependencies: []

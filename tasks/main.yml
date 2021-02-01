@@ -1,0 +1,22 @@
+---
+- name: install netplan packages
+  packages:
+    name: netplan_packages
+    state: present
+  when: ansible_os_family == 'Debain'
+  tags: netplan
+
+- import_tasks: wipe.yml
+  when:
+    - netplan_enabled
+    - netplan_wipe
+  tags: netplan
+
+- name: configure netplan
+  become: true
+  template:
+    src: templates/config.yaml.j2
+    dest: "{{ netplan_path }}/{{ netplan_file}}"
+  when: netplan_config != {}
+  notify: netplan generate config
+  tags: netplan
