@@ -48,9 +48,25 @@ netplan_config:
 ### Playbook
 
 ```yaml
-- hosts: all
+- hosts: localhost
+  vars:
+    netplan_config:
+      network:
+        ethernets:
+          eno1:
+            addresses:
+              - 192.168.1.10/24
+            gateway4: 192.168.1.1
+            nameservers:
+              search: [example.com]
+              addresses: [1.1.1.1, 8.8.8.8]
+          eno2:
+            dhcp4: false
+            dhcp6: false
+            optional: true
+    netplan_wipe: true
   roles:
-    - ansible-role-alertmanager
+    - ansible-role-netplan
 ```
 
 ## Contributing
