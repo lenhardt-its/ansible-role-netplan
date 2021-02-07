@@ -1,6 +1,6 @@
 ---
 - name: install netplan packages
-  packages:
+  package:
     name: netplan_packages
     state: present
   when: ansible_os_family == 'Debain'
