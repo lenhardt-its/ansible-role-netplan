@@ -1,13 +1,14 @@
 ---
 - name: install netplan packages
   package:
-    name: netplan_packages
+    name: "{{ netplan_packages }}"
     state: present
   when: ansible_os_family == 'Debain'
   tags: netplan
 
 - import_tasks: wipe.yml
   when:
+    - netplan_config | length > 0
     - netplan_enabled
     - netplan_wipe
   tags: netplan
